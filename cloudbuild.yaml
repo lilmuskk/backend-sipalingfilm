@@ -21,7 +21,7 @@ steps:
   - name: "gcr.io/cloud-builders/gcloud"
     args:
       [
-        "run", "deploy", "pacer",
+        "run", "deploy", "sipalingfilm",
         "--image", "gcr.io/$PROJECT_ID/sipalingfilm",
         "--timeout", "1000s",
         "--region", "us-central1",
