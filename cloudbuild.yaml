@@ -8,10 +8,6 @@ steps:
     args: ["cp", "${_ENV}", ".env"]
 
 
-  # Opsional: cek isi .env
-  - name: 'ubuntu'
-    entrypoint: 'bash'
-    args: ['-c', 'cat.env']
 
   # Step 3: Build image dari folder backend
   - name: "gcr.io/cloud-builders/docker"
