@@ -1,5 +1,5 @@
 substitutions:
-  _ENV: h-05-450908.appspot.com/sipalingfilm/.env
+  _ENV: gs://h-05-450908.appspot.com/sipalingfilm/.env
   
 
 steps:
@@ -11,7 +11,7 @@ steps:
   # Opsional: cek isi .env
   - name: 'ubuntu'
     entrypoint: 'bash'
-    args: ['-c', 'cat backend/.env']
+    args: ['-c', 'cat.env']
 
   # Step 3: Build image dari folder backend
   - name: "gcr.io/cloud-builders/docker"
