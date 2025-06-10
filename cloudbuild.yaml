@@ -11,7 +11,7 @@ substitutions:
   # ---------- VARIABEL LINGKUNGAN YANG AKAN DISUPLAI KE CLOUD RUN ----------
   # PASTIKAN NILAI-NILAI INI SESUAI DENGAN KREDENSIAL ASLI KAMU!
   # Ini adalah variabel yang akan diakses oleh `process.env` di aplikasi Node.js kamu di Cloud Run.
-  _PORT: "8080" # Port yang didengarkan aplikasi Node.js kamu
+  #_PORT: "8080" # Port yang didengarkan aplikasi Node.js kamu
   _DB_NAME: "sipalingfilm"
   _DB_USER: "punyacantik123"
   _DB_PASSWORD: "cantik123" # Peringatan: Password ini akan terlihat di log build Cloud Build!
@@ -64,7 +64,7 @@ steps:
         # ---------- PERBAIKAN UTAMA DI SINI ----------
         # SELURUH STRING UNTUK --set-env-vars DITULIS DALAM SATU BARIS
         "--set-env-vars", 
-        "PORT=${_PORT},DB_NAME=${_DB_NAME},DB_USER=${_DB_USER},DB_PASSWORD=${_DB_PASSWORD},DB_HOST=${_DB_HOST},JWT_SECRET=${_JWT_SECRET},JWT_EXPIRES_IN=${_JWT_EXPIRES_IN}"
+        "DB_NAME=${_DB_NAME},DB_USER=${_DB_USER},DB_PASSWORD=${_DB_PASSWORD},DB_HOST=${_DB_HOST},JWT_SECRET=${_JWT_SECRET},JWT_EXPIRES_IN=${_JWT_EXPIRES_IN}"
         # ----------------------------------------------
       ]
 
