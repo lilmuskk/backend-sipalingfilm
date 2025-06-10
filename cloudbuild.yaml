@@ -59,12 +59,12 @@ steps:
         # Cloud Run akan menggunakan variabel-variabel ini saat menjalankan aplikasi Anda.
         # Ini adalah solusi untuk error "Access denied" dan "container failed to start".
         "--set-env-vars",
-        "PORT=${_PORT},"
-        "DB_NAME=${_DB_NAME},"
-        "DB_USER=${_DB_USER},"
-        "DB_PASSWORD=${_DB_PASSWORD}," # Peringatan: Password sensitif di log build!
-        "DB_HOST=${_DB_HOST},"
-        "JWT_SECRET=${_JWT_SECRET}," # Peringatan: Secret sensitif di log build!
+        "PORT=${_PORT}",
+        "DB_NAME=${_DB_NAME}",
+        "DB_USER=${_DB_USER}",
+        "DB_PASSWORD=${_DB_PASSWORD}", # Peringatan: Password sensitif di log build!
+        "DB_HOST=${_DB_HOST}",
+        "JWT_SECRET=${_JWT_SECRET}", # Peringatan: Secret sensitif di log build!
         "JWT_EXPIRES_IN=${_JWT_EXPIRES_IN}",
 
         # ---------- PENTING: JANGAN AKTIFKAN INI JIKA TIDAK MENGGUNAKAN CLOUD SQL ----------
