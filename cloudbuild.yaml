@@ -59,8 +59,8 @@ steps:
         "--image", "gcr.io/$PROJECT_ID/sipalingfilm",
         "--timeout", "1000s",
         "--region", "us-central1",
-        #"--allow-unauthenticated",
-        "--no-allow-unauthenticated", # <--- Tambahkan ini
+        "--allow-unauthenticated",
+    
         
         # ---------- PERBAIKAN UTAMA DI SINI ----------
         # SELURUH STRING UNTUK --set-env-vars DITULIS DALAM SATU BARIS
