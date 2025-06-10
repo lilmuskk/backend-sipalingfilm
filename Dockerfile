@@ -6,18 +6,20 @@ FROM node:20-slim
 WORKDIR /app
 
 # Salin package.json dan package-lock.json terlebih dahulu
+# Ini memanfaatkan Docker cache.
 COPY package*.json ./
 
-# --- Perbaikan untuk masalah bcrypt / native modules ---
-# 1. Hapus node_modules dan cache npm yang mungkin ada
+# --- PERBAIKAN LEBIH AGRESIF UNTUK MASALAH bcrypt / native modules ---
+# 1. Hapus node_modules secara total dan pastikan cache npm bersih.
 RUN rm -rf node_modules && npm cache clean --force
 
-# 2. Instal ulang semua dependencies dari awal dengan --production
-# 3. Lakukan npm rebuild untuk memastikan native modules dikompilasi ulang untuk lingkungan ini.
-# Gunakan || true untuk mencegah build gagal jika clean cache gagal (jarang)
-RUN npm install --production && npm rebuild || true
+# 2. Instal ulang semua dependencies, dan *secara eksplisit* minta npm untuk membangun ulang native modules.
+#    Menggunakan `npm rebuild --unsafe-perm` sebagai langkah terpisah atau sebagai bagian dari `npm install`
+#    dengan jaminan bahwa `node-gyp` (tool yang digunakan untuk kompilasi) memiliki izin yang cukup.
+#    `npm ci` lebih ketat dalam menggunakan `package-lock.json`
+RUN npm ci --only=production && npm rebuild --unsafe-perm
 
-# ----------------------------------------------------
+# ------------------------------------------------------------------
 
 # Salin seluruh isi proyek ke direktori kerja container
 COPY . .
@@ -26,5 +28,4 @@ COPY . .
 EXPOSE 8080
 
 # Perintah untuk menjalankan aplikasi ketika container dimulai
-# Gunakan "npm start" karena script ini sudah didefinisikan di package.json
 CMD ["npm", "start"]
