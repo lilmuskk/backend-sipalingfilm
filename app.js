@@ -46,6 +46,11 @@ app.use('/api/users', userRoutes);
 app.use('/api/films', filmRoutes); // For managing master film data (e.g., by admin)
 app.use('/api/watchlist', watchlistRoutes); // For user-specific watchlists
 
+// --- ENDPOINT DUMMY BARU UNTUK PENGUJIAN ---
+app.get('/api/test-deployment', (req, res) => {
+    res.status(200).json({ message: 'Deployment Test: Success!', timestamp: new Date().toISOString() });
+});
+
 // Basic home route
 app.get('/', (req, res) => {
   res.send('Backend API for sipalingfilm is running!');
